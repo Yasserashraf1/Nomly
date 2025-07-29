@@ -31,4 +31,12 @@
         <item name="boxCornerRadiusBottomEnd">@dimen/corner_radius</item>
         <item name="boxCornerRadiusBottomStart">@dimen/corner_radius</item>
     </style>
+
+    <style name="Widget.App.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconTint">@color/nav_icon_color</item>
+        <item name="itemTextColor">@color/nav_icon_color</item>
+        <item name="itemBackground">?attr/colorSurface</item>
+        <item name="android:elevation">8dp</item>
+    </style>
+
 </resources>
