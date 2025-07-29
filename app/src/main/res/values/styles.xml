@@ -1,0 +1,34 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="cornerRadius">@dimen/corner_radius</item>
+    </style>
+
+    <style name="TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">@dimen/corner_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/corner_radius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/corner_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/corner_radius</item>
+    </style>
+</resources>

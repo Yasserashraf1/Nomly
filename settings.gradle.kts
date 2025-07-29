@@ -16,8 +16,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://jitpack.io") } // For Glide or other libs
     }
 }
+
+rootProject.name = "RecipeApp"
+include(":app")
 
 rootProject.name = "Nomly"
 include(":app")
