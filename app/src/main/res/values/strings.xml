@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">Nomly</string>
+
+    <!-- Auth -->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="dont_have_account">Don\'t have an account? Register</string>
+    <string name="already_have_account">Already have an account? Login</string>
+    <string name="confirm_password">Confirm Password</string>
+    <!-- Main App -->
+    <string name="search_hint">Search for recipes</string>
+    <string name="favorite_recipes">Favorite Recipes</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favorites">Favorites</string>
+    <string name="about">About</string>
+
+    <!-- Recipe Detail -->
+    <string name="ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
+    <string name="save_as_favorite">Save as favorite</string>
+
+    <!-- About -->
+    <string name="about_creator">About the Creator</string>
+    <string name="creator_description">Alggesittuus duccnonne to matroions rebidonzio to crysomities nehill on shot hure supportfootior.</string>
+
+    <!-- Menu -->
+    <string name="sign_out">Sign Out</string>
+    <string name="about_the_creator">About the Creator</string>
+
+
+    <!-- Add these validation error strings -->
+    <string name="error_email_empty">Email cannot be empty</string>
+    <string name="error_email_invalid">Please enter a valid email</string>
+    <string name="error_password_empty">Password cannot be empty</string>
+    <string name="error_password_short">Password must be at least 6 characters</string>
+    <string name="error_password_mismatch">Passwords don\'t match</string>
 </resources>
