@@ -29,7 +29,7 @@ class RegisterFragment : Fragment() {
         }
 
         binding.registerButton.setOnClickListener {
-            // TODO: Add registration logic (will be implemented by your team)
+            // TODO: Add registration logic (will be implemented by  team)
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
     }

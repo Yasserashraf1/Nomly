@@ -29,7 +29,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginButton.setOnClickListener {
-            // TODO: Add login logic (will be implemented by your team)
+            // TODO: Add login logic (will be implemented by  team)
             findNavController().navigate(R.id.action_loginFragment_to_recipeActivity)
         }
     }
