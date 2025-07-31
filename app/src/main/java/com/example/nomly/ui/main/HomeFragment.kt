@@ -1,34 +1,132 @@
 package com.example.nomly.ui.main
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nomly.R
 import com.example.nomly.databinding.FragmentHomeBinding
+import com.example.nomly.model.FavoriteRecipe
+import com.example.nomly.model.Recipe
+import com.example.nomly.repository.MealRepository
+import com.example.nomly.ui.home.RecipeAdapter
+import com.example.nomly.ui.viewmodel.FavoriteViewModel
+import com.example.nomly.ui.viewmodel.FavoriteViewModelFactory
+import com.example.nomly.ui.viewmodel.RecipeViewModel
 
 class HomeFragment : Fragment() {
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var recipeAdapter: RecipeAdapter
+
+    private val viewModel: RecipeViewModel by viewModels()
+
+    private lateinit var favoriteViewModel: FavoriteViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // TODO: Replace with real adapter implementation
-        binding.recipesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recipesRecyclerView.adapter = RecipeAdapter(listOf()) { recipe ->
-            // TODO: Navigate to recipe detail
+        // Initialize FavoriteViewModel with factory, passing repository
+        val dao = requireContext().let { context ->
+            com.example.nomly.model.AppDatabase.getDatabase(context).favoriteRecipeDao()
         }
+        val repository = MealRepository(dao)
+        val factory = FavoriteViewModelFactory(repository)
+        favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
+
+        setupRecyclerView()
+        setupObservers()
+        setupSearchListener()
+
+        viewModel.fetchRecipes()
+    }
+
+    private fun setupRecyclerView() {
+        recipeAdapter = RecipeAdapter(
+            emptyList(),
+            onItemClick = { recipe ->
+                val action = HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(recipe.id)
+                findNavController().navigate(action)
+            },
+            onFavoriteClick = { recipe ->
+                if (recipe.isFavorite) {
+                    favoriteViewModel.removeFromFavorites(recipe.toFavoriteRecipe())
+                } else {
+                    favoriteViewModel.addToFavorites(recipe.toFavoriteRecipe())
+                }
+            }
+        )
+
+        binding.recipesRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = recipeAdapter
+        }
+    }
+
+    private fun setupObservers() {
+        // Observe favorites to update recipe list's favorite status
+        favoriteViewModel.allFavorites.observe(viewLifecycleOwner) { favorites ->
+            val favoriteIds = favorites.map { it.id }.toSet()
+            viewModel.recipes.value?.let { recipes ->
+                val updated = recipes.map { it.copy(isFavorite = favoriteIds.contains(it.id)) }
+                recipeAdapter.submitList(updated)
+            }
+        }
+
+        // Observe recipes from API or source
+        viewModel.recipes.observe(viewLifecycleOwner) { recipes ->
+            // When recipes are updated, merge favorite state
+            val favoriteIds = favoriteViewModel.allFavorites.value?.map { it.id }?.toSet() ?: emptySet()
+            val updated = recipes.map { it.copy(isFavorite = favoriteIds.contains(it.id)) }
+            recipeAdapter.submitList(updated)
+        }
+
+        viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
+            errorMessage?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
+            // Optional: show/hide progress bar
+        }
+    }
+
+    private fun setupSearchListener() {
+        binding.search.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                // Implement search/filter if needed
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+    }
+
+    // Helper extension to convert Recipe to FavoriteRecipe
+    private fun Recipe.toFavoriteRecipe(): FavoriteRecipe {
+        return FavoriteRecipe(
+            id = this.id,
+            title = this.title,
+            imageUrl = this.imageUrl,
+            instructions = this.instructions,
+            ingredients = this.ingredients
+        )
     }
 
     override fun onDestroyView() {

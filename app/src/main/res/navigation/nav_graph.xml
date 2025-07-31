@@ -24,9 +24,9 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
-        <action
+<!--        <action
             android:id="@+id/action_loginFragment_to_recipeActivity"
-            app:destination="@id/recipeActivity" />
+            app:destination="@id/recipeActivity" />-->
     </fragment>
 
     <fragment

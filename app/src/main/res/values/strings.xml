@@ -21,6 +21,13 @@
     <string name="ingredients">Ingredients</string>
     <string name="instructions">Instructions</string>
     <string name="save_as_favorite">Save as favorite</string>
+    <string name="remove_from_favorites">Remove from Favorites</string>
+    <string name="show_more">Show More</string>
+    <string name="show_less">Show Less</string>
+    <string name="added_to_favorites">Added to favorites</string>
+    <string name="removed_from_favorites">Removed from favorites</string>
+    <string name="recipe_not_found">Recipe not found</string>
+
 
     <!-- About -->
     <string name="about_creator">About the Creator</string>
