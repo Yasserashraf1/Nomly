@@ -10,3 +10,4 @@ data class Recipe(
     val imageUrl: String,
     val isFavorite: Boolean = false
 )
+

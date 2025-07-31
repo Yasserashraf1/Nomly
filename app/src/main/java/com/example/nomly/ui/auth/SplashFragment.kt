@@ -18,7 +18,7 @@ class SplashFragment : Fragment() {
         // Delay for 2 seconds then navigate to login
         Handler(Looper.getMainLooper()).postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
-        }, 2000)
+        }, 4000)
 
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
