@@ -1,53 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:fillViewport="true"
-    tools:context="com.example.nomly.ui.main.AboutFragment">
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_large">
+        android:padding="24dp">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/about"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_size_xlarge"
-            android:textStyle="bold"
+        <!-- Lottie Animation -->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/chef"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="chef.json"
+            app:lottie_loop="true" />
 
+        <!-- Title -->
         <TextView
-            android:id="@+id/aboutCreatorTitle"
+            android:id="@+id/aboutTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@string/about_creator"
+            android:text="About the App"
             android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintTop_toBottomOf="@id/chef" />
 
+        <!-- Description -->
         <TextView
-            android:id="@+id/aboutCreatorText"
-            android:layout_width="match_parent"
+            android:id="@+id/aboutDescription"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/creator_description"
+            android:lineSpacingExtra="4dp"
+            android:text="Nomly is a recipe app built for food lovers. You can discover a wide variety of recipes from around the world, search by ingredients or name, and save your favorite meals for quick access anytime..\n\nThis app was developed by a passionate team of four developers who love food and clean, user-friendly design. Our goal is to make discovering and enjoying recipes simple, beautiful, and fun for everyone."
+            android:textAlignment="center"
             android:textColor="@color/text_secondary"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/aboutCreatorTitle" />
+            app:layout_constraintTop_toBottomOf="@id/aboutTitle" />
+
+        <!-- Thank You -->
+        <TextView
+            android:id="@+id/aboutThanks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+            android:text="Thank you for using Nomly ❤️"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aboutDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

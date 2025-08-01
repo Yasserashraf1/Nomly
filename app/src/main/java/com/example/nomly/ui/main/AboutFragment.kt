@@ -1,6 +1,8 @@
 package com.example.nomly.ui.main
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -20,7 +22,7 @@ class AboutFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true) // Enable options menu
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -33,12 +35,24 @@ class AboutFragment : Fragment() {
         val actionBar = (activity as AppCompatActivity).supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
+        // Hide initially
+        binding.aboutTitle.visibility = View.INVISIBLE
+        binding.aboutDescription.visibility = View.INVISIBLE
+        binding.aboutThanks.visibility = View.INVISIBLE
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.aboutTitle.visibility = View.VISIBLE
+            binding.aboutDescription.visibility = View.VISIBLE
+            binding.aboutThanks.visibility = View.VISIBLE
+        }, 1000)
+        binding.chef.speed = 0.7f
         // Handle back navigation using OnBackPressedDispatcher
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 // Navigate back to the previous fragment
                 requireActivity().supportFragmentManager.popBackStack()
             }
+
         })
 
         return binding.root
