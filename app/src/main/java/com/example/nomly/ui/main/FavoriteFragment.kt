@@ -1,6 +1,8 @@
 package com.example.nomly.ui.main
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +28,7 @@ class FavoriteFragment : Fragment() {
 
     private lateinit var adapter: RecipeAdapter
     private lateinit var viewModel: FavoriteViewModel
+    private var favoriteList: List<Recipe> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +45,25 @@ class FavoriteFragment : Fragment() {
         val repository = MealRepository(dao)
         val factory = FavoriteViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
+        binding.search.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val query = s.toString().lowercase()
+                if (query.isEmpty()) {
+                    adapter.submitList(favoriteList)
+                    return
+                }
+                val filteredList = favoriteList.filter {
+                    it.title.contains(query, true) ||
+                            it.ingredients.any { ingredient -> ingredient.contains(query, true) } ||
+                            it.instructions.contains(query, true)
+                }
+                adapter.submitList(filteredList)
+            }
+        })
 
         adapter = RecipeAdapter(
             emptyList(),
@@ -92,8 +114,8 @@ class FavoriteFragment : Fragment() {
         }
         ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(binding.favoritesRecyclerView)
 
-        viewModel.allFavorites.observe(viewLifecycleOwner) { favoriteList ->
-            adapter.submitList(favoriteList.map { favorite ->
+        viewModel.allFavorites.observe(viewLifecycleOwner) { favoriteEntities ->
+            favoriteList = favoriteEntities.map { favorite ->
                 Recipe(
                     id = favorite.id,
                     title = favorite.title,
@@ -104,10 +126,10 @@ class FavoriteFragment : Fragment() {
                     imageUrl = favorite.imageUrl,
                     isFavorite = true
                 )
-            })
+            }
+            adapter.submitList(favoriteList)
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
