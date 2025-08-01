@@ -60,7 +60,6 @@ class HomeFragment : Fragment() {
 
         setupRecyclerView()
         setupObservers()
-        setupSearchListener()
 
         viewModel.fetchRecipes()
     }
@@ -116,37 +115,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupSearchListener() {
-        binding.search.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                // Not used
-            }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // Not used
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val query = s.toString().trim()
-                val originalList = viewModel.recipes.value ?: return
-
-                if (query.isEmpty()) {
-                    recipeAdapter.submitList(originalList)
-                    return
-                }
-
-                val filteredList = originalList.filter { recipe ->
-                    recipe.title.contains(query, ignoreCase = true) ||
-                            recipe.ingredients.any { ingredient ->
-                                ingredient.contains(query, ignoreCase = true)
-                            } ||
-                            recipe.instructions.contains(query, ignoreCase = true)
-                }
-
-                recipeAdapter.submitList(filteredList)
-            }
-        })
-    }
     // Helper extension to convert Recipe to FavoriteRecipe
     private fun Recipe.toFavoriteRecipe(): FavoriteRecipe {
         return FavoriteRecipe(
