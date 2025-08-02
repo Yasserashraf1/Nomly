@@ -1,5 +1,6 @@
 package com.example.nomly.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,10 +17,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nomly.R
+import com.example.nomly.SharedPrefs
 import com.example.nomly.databinding.FragmentHomeBinding
 import com.example.nomly.model.FavoriteRecipe
 import com.example.nomly.model.Recipe
 import com.example.nomly.repository.MealRepository
+import com.example.nomly.ui.auth.AuthActivity
 import com.example.nomly.ui.home.RecipeAdapter
 import com.example.nomly.ui.viewmodel.FavoriteViewModel
 import com.example.nomly.ui.viewmodel.FavoriteViewModelFactory
@@ -143,6 +146,10 @@ class HomeFragment : Fragment() {
             }
             R.id.signOut -> {
                 // Handle sign out action
+                SharedPrefs.logout(requireContext())
+                val intent = Intent(requireContext(), AuthActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
