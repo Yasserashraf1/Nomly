@@ -1,8 +1,8 @@
-package com.example.nomly.ui.viewmodel
+package com.example.nomly.ui.presentation.viewmodel
 
 import androidx.lifecycle.*
-import com.example.nomly.model.FavoriteRecipe
-import com.example.nomly.repository.MealRepository
+import com.example.nomly.data.local.db.entities.FavoriteRecipe
+import com.example.nomly.data.repository.MealRepository
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel(private val repository: MealRepository) : ViewModel() {

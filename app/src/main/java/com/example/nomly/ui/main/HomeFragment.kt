@@ -2,8 +2,6 @@ package com.example.nomly.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -17,16 +15,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nomly.R
-import com.example.nomly.SharedPrefs
+import com.example.nomly.ui.utils.SharedPrefs
+import com.example.nomly.data.local.db.AppDatabase
 import com.example.nomly.databinding.FragmentHomeBinding
-import com.example.nomly.model.FavoriteRecipe
-import com.example.nomly.model.Recipe
-import com.example.nomly.repository.MealRepository
+import com.example.nomly.data.local.db.entities.FavoriteRecipe
+import com.example.nomly.domain.model.Recipe
+import com.example.nomly.data.repository.MealRepository
 import com.example.nomly.ui.auth.AuthActivity
 import com.example.nomly.ui.home.RecipeAdapter
-import com.example.nomly.ui.viewmodel.FavoriteViewModel
-import com.example.nomly.ui.viewmodel.FavoriteViewModelFactory
-import com.example.nomly.ui.viewmodel.RecipeViewModel
+import com.example.nomly.ui.presentation.viewmodel.FavoriteViewModel
+import com.example.nomly.ui.presentation.viewmodel.FavoriteViewModelFactory
+import com.example.nomly.ui.presentation.viewmodel.RecipeViewModel
 
 class HomeFragment : Fragment() {
 
@@ -41,7 +40,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true) // Enable options menu
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -53,9 +52,8 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // Initialize FavoriteViewModel with factory, passing repository
         val dao = requireContext().let { context ->
-            com.example.nomly.model.AppDatabase.getDatabase(context).favoriteRecipeDao()
+            AppDatabase.getDatabase(context).favoriteRecipeDao()
         }
         val repository = MealRepository(dao)
         val factory = FavoriteViewModelFactory(repository)
@@ -90,7 +88,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        // Observe favorites to update recipe list's favorite status
         favoriteViewModel.allFavorites.observe(viewLifecycleOwner) { favorites ->
             val favoriteIds = favorites.map { it.id }.toSet()
             viewModel.recipes.value?.let { recipes ->
@@ -99,9 +96,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        // Observe recipes from API or source
         viewModel.recipes.observe(viewLifecycleOwner) { recipes ->
-            // When recipes are updated, merge favorite state
             val favoriteIds = favoriteViewModel.allFavorites.value?.map { it.id }?.toSet() ?: emptySet()
             val updated = recipes.map { it.copy(isFavorite = favoriteIds.contains(it.id)) }
             recipeAdapter.submitList(updated)
@@ -114,12 +109,10 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
-            // Optional: show/hide progress bar
         }
     }
 
 
-    // Helper extension to convert Recipe to FavoriteRecipe
     private fun Recipe.toFavoriteRecipe(): FavoriteRecipe {
         return FavoriteRecipe(
             id = this.id,
@@ -140,12 +133,10 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.aboutCreator -> {
-                // Navigate to AboutFragment
                 findNavController().navigate(R.id.aboutFragment)
                 true
             }
             R.id.signOut -> {
-                // Handle sign out action
                 SharedPrefs.logout(requireContext())
                 val intent = Intent(requireContext(), AuthActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

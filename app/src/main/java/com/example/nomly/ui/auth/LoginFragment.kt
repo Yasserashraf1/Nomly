@@ -10,11 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.nomly.databinding.FragmentLoginBinding
 import com.example.nomly.ui.main.RecipeActivity
-import androidx.core.content.edit
 import androidx.lifecycle.lifecycleScope
 import com.example.nomly.R
-import com.example.nomly.SharedPrefs
-import com.example.nomly.model.AppDatabase
+import com.example.nomly.ui.utils.SharedPrefs
+import com.example.nomly.data.local.db.AppDatabase
 import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
@@ -32,12 +31,10 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // Navigate to Register Screen
         binding.registerText.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        // Simulated login logic
         binding.loginButton.setOnClickListener {
             val username = binding.email.text.toString().trim()
             val password =  binding.password.text.toString().trim()
@@ -55,10 +52,9 @@ class LoginFragment : Fragment() {
                     (savedUsername == username && savedPassword == password)){
 
 
-                    // Go to RecipeActivity
                     SharedPrefs.setLogin(requireContext(), username, password)
                     startActivity(Intent(requireActivity(), RecipeActivity::class.java))
-                    requireActivity().finish() // Close login screen
+                    requireActivity().finish()
                 } else {
                     Toast.makeText(requireContext(), "Invalid username or password", Toast.LENGTH_SHORT).show()
                 }

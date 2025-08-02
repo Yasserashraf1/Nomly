@@ -1,12 +1,11 @@
-package com.example.nomly.repository
+package com.example.nomly.data.remote.api
 
-import com.example.nomly.model.MealDto
+import com.example.nomly.data.remote.dto.MealDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-// Response wrapper with nullable meals list
 data class MealResponse(
-    val meals: List<MealDto>?  // Nullable to handle API null responses
+    val meals: List<MealDto>?
 )
 
 interface MealApiService {

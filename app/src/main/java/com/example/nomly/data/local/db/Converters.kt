@@ -1,5 +1,4 @@
-package com.example.nomly.model
-
+package com.example.nomly.data.local.db
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

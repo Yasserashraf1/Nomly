@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.nomly.R
 import com.example.nomly.databinding.ItemRecipeBinding
-import com.example.nomly.model.Recipe
+import com.example.nomly.domain.model.Recipe
 
 class RecipeAdapter(
     internal var recipes: List<Recipe>,

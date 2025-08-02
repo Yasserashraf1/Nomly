@@ -14,13 +14,13 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nomly.databinding.FragmentFavoriteBinding
-import com.example.nomly.model.AppDatabase
-import com.example.nomly.model.FavoriteRecipe
-import com.example.nomly.model.Recipe
-import com.example.nomly.repository.MealRepository
+import com.example.nomly.data.local.db.AppDatabase
+import com.example.nomly.data.local.db.entities.FavoriteRecipe
+import com.example.nomly.domain.model.Recipe
+import com.example.nomly.data.repository.MealRepository
 import com.example.nomly.ui.home.RecipeAdapter
-import com.example.nomly.ui.viewmodel.FavoriteViewModel
-import com.example.nomly.ui.viewmodel.FavoriteViewModelFactory
+import com.example.nomly.ui.presentation.viewmodel.FavoriteViewModel
+import com.example.nomly.ui.presentation.viewmodel.FavoriteViewModelFactory
 
 class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
@@ -68,12 +68,10 @@ class FavoriteFragment : Fragment() {
         adapter = RecipeAdapter(
             emptyList(),
             onItemClick = { recipe ->
-                // Navigate to recipe detail
                 val action = FavoriteFragmentDirections.actionFavoriteFragmentToRecipeDetailFragment(recipe.id)
                 findNavController().navigate(action)
             },
             onFavoriteClick = { recipe ->
-                // Remove from favorites when heart icon clicked
                 val favoriteRecipe = FavoriteRecipe(
                     id = recipe.id,
                     title = recipe.title,
@@ -89,7 +87,6 @@ class FavoriteFragment : Fragment() {
         binding.favoritesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.favoritesRecyclerView.adapter = adapter
 
-        // Attach swipe-to-delete functionality
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
                 recyclerView: RecyclerView,

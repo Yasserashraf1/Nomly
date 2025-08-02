@@ -6,20 +6,20 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.nomly.data.local.db.AppDatabase
 import com.example.nomly.databinding.FragmentSearchBinding
-import com.example.nomly.model.FavoriteRecipe
-import com.example.nomly.model.Recipe
-import com.example.nomly.repository.MealRepository
+import com.example.nomly.data.local.db.entities.FavoriteRecipe
+import com.example.nomly.domain.model.Recipe
+import com.example.nomly.data.repository.MealRepository
 import com.example.nomly.ui.home.RecipeAdapter
-import com.example.nomly.ui.viewmodel.FavoriteViewModel
-import com.example.nomly.ui.viewmodel.FavoriteViewModelFactory
-import com.example.nomly.ui.viewmodel.RecipeViewModel
+import com.example.nomly.ui.presentation.viewmodel.FavoriteViewModel
+import com.example.nomly.ui.presentation.viewmodel.FavoriteViewModelFactory
+import com.example.nomly.ui.presentation.viewmodel.RecipeViewModel
 
 class SearchFragment : Fragment() {
 
@@ -43,7 +43,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val dao = requireContext().let {
-            com.example.nomly.model.AppDatabase.getDatabase(it).favoriteRecipeDao()
+            AppDatabase.getDatabase(it).favoriteRecipeDao()
         }
         val repository = MealRepository(dao)
         val factory = FavoriteViewModelFactory(repository)

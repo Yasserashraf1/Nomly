@@ -1,9 +1,9 @@
-package com.example.nomly.ui.viewmodel
+package com.example.nomly.ui.presentation.viewmodel
 
 
 import androidx.lifecycle.*
-import com.example.nomly.model.Recipe
-import com.example.nomly.repository.RecipeRepository
+import com.example.nomly.domain.model.Recipe
+import com.example.nomly.data.repository.RecipeRepository
 import kotlinx.coroutines.launch
 
 class RecipeDetailViewModel : ViewModel() {
