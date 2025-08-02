@@ -2,11 +2,9 @@ package com.example.nomly.ui.main
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -45,6 +43,16 @@ class RecipeDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Show back arrow in default app bar
+        (activity as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            title = "Recipe Details"
+        }
+        setHasOptionsMenu(true)
+
         setupFavoriteViewModel()
 
         recipeViewModel.loadRecipe(args.recipeId)
@@ -90,7 +98,6 @@ class RecipeDetailFragment : Fragment() {
                     favoriteViewModel.isFavorite(recipe.id).observe(viewLifecycleOwner) { isFav ->
                         updateFavoriteButtonIcon(isFav)
 
-                        // Update button text dynamically based on favorite state
                         saveFavoriteButton.text = if (isFav) {
                             getString(R.string.remove_from_favorites)
                         } else {
@@ -100,70 +107,47 @@ class RecipeDetailFragment : Fragment() {
                         saveFavoriteButton.setOnClickListener {
                             if (isFav) {
                                 favoriteViewModel.removeFromFavorites(favoriteRecipe)
-                                Toast.makeText(
-                                    requireContext(),
-                                    getString(R.string.removed_from_favorites),
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Toast.makeText(requireContext(), getString(R.string.removed_from_favorites), Toast.LENGTH_SHORT).show()
                             } else {
                                 favoriteViewModel.addToFavorites(favoriteRecipe)
-                                Toast.makeText(
-                                    requireContext(),
-                                    getString(R.string.added_to_favorites),
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Toast.makeText(requireContext(), getString(R.string.added_to_favorites), Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
+
                     watchVideoButton.setOnClickListener {
                         if (!recipe.videoUrl.isNullOrEmpty()) {
                             val videoId = extractYoutubeVideoId(recipe.videoUrl!!)
                             if (videoId != null) {
-                                binding.miniPlayerContainer.visibility = View.VISIBLE
-                                lifecycle.addObserver(binding.miniYoutubePlayerView)
-
-                                binding.miniYoutubePlayerView.addYouTubePlayerListener(
-                                    object : AbstractYouTubePlayerListener() {
-                                        override fun onReady(youTubePlayer: YouTubePlayer) {
-                                            youTubePlayer.loadVideo(videoId, 0f)
-                                        }
+                                miniPlayerContainer.visibility = View.VISIBLE
+                                lifecycle.addObserver(miniYoutubePlayerView)
+                                miniYoutubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+                                    override fun onReady(youTubePlayer: YouTubePlayer) {
+                                        youTubePlayer.loadVideo(videoId, 0f)
                                     }
-                                )
+                                })
                             } else {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "invalid_video_url",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Toast.makeText(requireContext(), "Invalid video URL", Toast.LENGTH_SHORT).show()
                             }
                         } else {
-                            Toast.makeText(
-                                requireContext(),
-                                "no_video_available",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(requireContext(), "No video available", Toast.LENGTH_SHORT).show()
                         }
                     }
 
                     closeMiniPlayerButton.setOnClickListener {
-                        binding.miniPlayerContainer.visibility = View.GONE
-                        binding.miniYoutubePlayerView.release()
+                        miniPlayerContainer.visibility = View.GONE
+                        miniYoutubePlayerView.release()
                     }
                 }
             } else {
                 Toast.makeText(requireContext(), getString(R.string.recipe_not_found), Toast.LENGTH_SHORT).show()
             }
         }
-        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
-        toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
-        }
     }
 
     private fun setupFavoriteViewModel() {
         val db = AppDatabase.getDatabase(requireContext())
         val repository = MealRepository(db.favoriteRecipeDao())
-
         favoriteViewModel = ViewModelProvider(
             this,
             object : ViewModelProvider.Factory {
@@ -193,8 +177,18 @@ class RecipeDetailFragment : Fragment() {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                findNavController().navigateUp()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        }
+    }
 }
