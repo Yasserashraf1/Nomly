@@ -2,6 +2,22 @@
 ### **Nomly** is a full-featured Android recipe app built with Kotlin. It allows users to explore a variety of meals, view detailed cooking instructions, and manage favorite recipes—all powered by TheMealDB API. The app also supports user authentication, seamless navigation, offline favorites storage, and modern UI with video overlays.
 
 # ✨ Features
+* 🔍 Search recipes by name
+* 📝 View detailed recipe information
+* ❤️ Save favorite recipes locally
+* 👥 User authentication (Login/Register )
+* 🔄 Auto recipe suggestions via API
+* 🧠 Clean MVVM Architecture
+* 💾 Offline support for saved favorites
+  🧱 Tech Stack
+Layer	Libraries/Tools
+Language	Kotlin
+Architecture	MVVM (Model-View-ViewModel)
+Networking	Retrofit, Gson
+Local Storage	Room, SQLite
+DI (optional)	Hilt/Koin (can be integrated later)
+Authentication	Auth
+UI	XML, RecyclerView, Navigation Component
 ## 🔐 Authentication
   * **Splash screen** with Lottie animation.
   * **Register** and login functionality.
@@ -31,6 +47,40 @@
   * `Sign Out` to clear session and return to AuthActivity.
   * `About the Creator` to navigate to AboutFragment.
 
+# 🧱 Tech Stack
+
+| Layer           | Libraries/Tools                                   |
+|------------------|---------------------------------------------------|
+| Language         | Kotlin                                            |
+| Architecture     | MVVM (Model-View-ViewModel)                       |
+| Networking       | Retrofit, Gson                                    |
+| Local Storage    | Room, SQLite                                      |
+| Authentication   | Auth (SharedPreferences for login/session)        |
+| UI               | XML, RecyclerView, Navigation Component           |
+
+# 📂 Project Structure
+`
+com.example.nomly/
+│
+├── data/
+│   ├── local/ (Room DB, DAOs, Entities)
+│   ├── remote/ (Retrofit API, DTOs)
+│   └── repository/
+│
+├── domain/
+│   └── model/ (Recipe, User, etc.)
+│
+├── ui/
+│   ├── adapter/
+│   ├── auth/ (Login, Register, Splash)
+│   └── main/ (Home, Favorite, Search, Detail)
+│
+├── presentation/
+│   └── viewmodel/
+│
+├── utils/ (SharedPrefs, Converters)
+└── RecipeApplication.kt
+`
 ## 🚀 Getting Started 
   * Clone the repo:
     `git clone https://github.com/your-username/nomly-recipe-app.git` 
