@@ -29,8 +29,20 @@ class RecipeActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
+
         val navView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
         navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            supportActionBar?.title = when (destination.id) {
+                R.id.homeFragment -> "Home"
+                R.id.searchFragment -> "Search"
+                R.id.favoriteFragment -> "Favorites"
+                R.id.recipeDetailFragment -> "Recipe Details"
+                R.id.aboutFragment -> "About"
+                else -> "Nomly"
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
