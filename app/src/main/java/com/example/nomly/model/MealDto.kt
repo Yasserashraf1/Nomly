@@ -1,4 +1,5 @@
 package com.example.nomly.model
+import com.example.nomly.model.FavoriteRecipe
 data class MealDto(
     val idMeal: String,
     val strMeal: String,
@@ -10,7 +11,8 @@ data class MealDto(
     val strIngredient3: String?,
     val strIngredient4: String?,
     val strIngredient5: String?,
-    val strIngredient6: String?
+    val strIngredient6: String?,
+    val strYoutube: String?
 
 
 
@@ -30,6 +32,7 @@ fun MealDto.toRecipe(): Recipe {
         instructions = strInstructions ?: "No instructions",
         cookingTime = "30 min", // placeholder
         imageUrl = strMealThumb ?: "",
-        isFavorite = false
-    )
+        isFavorite = false,
+        videoUrl = strYoutube
+        )
 }

@@ -140,12 +140,13 @@ class SearchFragment : Fragment() {
             title = this.title,
             imageUrl = this.imageUrl,
             instructions = this.instructions,
-            ingredients = this.ingredients
+            ingredients = this.ingredients,
+            videoUrl = this.videoUrl
         )
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
+        }
 }

@@ -8,6 +8,6 @@ data class Recipe(
     val instructions: String,
     val cookingTime: String,
     val imageUrl: String,
-    val isFavorite: Boolean = false
+    val isFavorite: Boolean = false,
+    val videoUrl:String?= null
 )
-

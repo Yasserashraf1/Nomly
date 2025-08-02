@@ -79,7 +79,8 @@ class FavoriteFragment : Fragment() {
                     title = recipe.title,
                     imageUrl = recipe.imageUrl,
                     instructions = recipe.instructions,
-                    ingredients = recipe.ingredients
+                    ingredients = recipe.ingredients,
+                    videoUrl = recipe.videoUrl
                 )
                 viewModel.removeFromFavorites(favoriteRecipe)
             }
@@ -105,7 +106,8 @@ class FavoriteFragment : Fragment() {
                     title = recipeToDelete.title,
                     imageUrl = recipeToDelete.imageUrl,
                     instructions = recipeToDelete.instructions,
-                    ingredients = recipeToDelete.ingredients
+                    ingredients = recipeToDelete.ingredients,
+                    videoUrl = recipeToDelete.videoUrl
                 )
 
                 viewModel.removeFromFavorites(favoriteToDelete)
@@ -124,7 +126,8 @@ class FavoriteFragment : Fragment() {
                     instructions = favorite.instructions ?: "",
                     cookingTime = "30 mins",
                     imageUrl = favorite.imageUrl,
-                    isFavorite = true
+                    isFavorite = true,
+                    videoUrl = favorite.videoUrl
                 )
             }
             adapter.submitList(favoriteList)
@@ -133,5 +136,5 @@ class FavoriteFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
+        }
 }

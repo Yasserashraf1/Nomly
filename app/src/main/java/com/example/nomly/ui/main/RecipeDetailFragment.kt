@@ -22,6 +22,8 @@ import com.example.nomly.model.FavoriteRecipe
 import com.example.nomly.repository.MealRepository
 import com.example.nomly.ui.viewmodel.FavoriteViewModel
 import com.example.nomly.ui.viewmodel.RecipeDetailViewModel
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
 class RecipeDetailFragment : Fragment() {
 
@@ -81,7 +83,8 @@ class RecipeDetailFragment : Fragment() {
                         title = recipe.title,
                         imageUrl = recipe.imageUrl,
                         instructions = recipe.instructions,
-                        ingredients = recipe.ingredients
+                        ingredients = recipe.ingredients,
+                        videoUrl = recipe.videoUrl
                     )
 
                     favoriteViewModel.isFavorite(recipe.id).observe(viewLifecycleOwner) { isFav ->
@@ -97,19 +100,60 @@ class RecipeDetailFragment : Fragment() {
                         saveFavoriteButton.setOnClickListener {
                             if (isFav) {
                                 favoriteViewModel.removeFromFavorites(favoriteRecipe)
-                                Toast.makeText(requireContext(), getString(R.string.removed_from_favorites), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    getString(R.string.removed_from_favorites),
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             } else {
                                 favoriteViewModel.addToFavorites(favoriteRecipe)
-                                Toast.makeText(requireContext(), getString(R.string.added_to_favorites), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    getString(R.string.added_to_favorites),
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
+                    }
+                    watchVideoButton.setOnClickListener {
+                        if (!recipe.videoUrl.isNullOrEmpty()) {
+                            val videoId = extractYoutubeVideoId(recipe.videoUrl!!)
+                            if (videoId != null) {
+                                binding.miniPlayerContainer.visibility = View.VISIBLE
+                                lifecycle.addObserver(binding.miniYoutubePlayerView)
+
+                                binding.miniYoutubePlayerView.addYouTubePlayerListener(
+                                    object : AbstractYouTubePlayerListener() {
+                                        override fun onReady(youTubePlayer: YouTubePlayer) {
+                                            youTubePlayer.loadVideo(videoId, 0f)
+                                        }
+                                    }
+                                )
+                            } else {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "invalid_video_url",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                "no_video_available",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+
+                    closeMiniPlayerButton.setOnClickListener {
+                        binding.miniPlayerContainer.visibility = View.GONE
+                        binding.miniYoutubePlayerView.release()
                     }
                 }
             } else {
                 Toast.makeText(requireContext(), getString(R.string.recipe_not_found), Toast.LENGTH_SHORT).show()
             }
         }
-
         val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
         toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
@@ -137,8 +181,20 @@ class RecipeDetailFragment : Fragment() {
         )
     }
 
+    private fun extractYoutubeVideoId(url: String): String? {
+        return try {
+            when {
+                url.contains("v=") -> url.substringAfter("v=").substringBefore("&")
+                url.contains("youtu.be/") -> url.substringAfter("youtu.be/")
+                else -> null
+            }
+        } catch (e: Exception) {
+            null
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
+        }
 }

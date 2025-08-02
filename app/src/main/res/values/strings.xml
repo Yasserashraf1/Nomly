@@ -44,4 +44,6 @@
     <string name="error_password_empty">Password cannot be empty</string>
     <string name="error_password_short">Password must be at least 6 characters</string>
     <string name="error_password_mismatch">Passwords don\'t match</string>
+    <string name="recipe_details">Recipe Details</string>
+
 </resources>

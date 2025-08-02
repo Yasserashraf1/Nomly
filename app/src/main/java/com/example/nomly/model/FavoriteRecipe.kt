@@ -10,5 +10,6 @@ data class FavoriteRecipe(
     val title: String,
     val imageUrl: String,
     val instructions: String,
-    val ingredients: List<String>
+    val ingredients: List<String>,
+    val videoUrl:String?
 )

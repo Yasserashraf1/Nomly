@@ -89,6 +89,7 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.6.1")
     implementation("com.airbnb.android:lottie:6.3.0")
     implementation ("com.google.code.gson:gson:2.10.1")
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
 
 
 

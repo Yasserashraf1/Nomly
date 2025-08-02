@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.nomly.ui.main.HomeFragment"
-        android:label="HomeFragment">
+        android:label="@string/home">
         <action
             android:id="@+id/action_homeFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment">
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.nomly.ui.main.SearchFragment"
-        android:label="SearchFragment">
+        android:label="@string/search">
         <action
             android:id="@+id/action_searchFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment">
@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.nomly.ui.main.FavoriteFragment"
-        android:label="FavoriteFragment">
+        android:label="@string/favorites">
         <action
             android:id="@+id/action_favoriteFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment">
@@ -45,7 +45,7 @@
     <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="com.example.nomly.ui.main.RecipeDetailFragment"
-        android:label="RecipeDetailFragment">
+        android:label="@string/recipe_details">
         <argument
             android:name="recipeId"
             app:argType="string" />
@@ -54,6 +54,6 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.nomly.ui.main.AboutFragment"
-        android:label="AboutFragment" />
+        android:label="@string/about" />
 
 </navigation>
