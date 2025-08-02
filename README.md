@@ -28,18 +28,18 @@
   * First-time users are routed to Register/Login.
   * Returning users skip directly to the Home screen.
 ## 📜 Options Menu
-  * Sign Out to clear session and return to AuthActivity.
-  * About the Creator to navigate to AboutFragment.
+  * `Sign Out` to clear session and return to AuthActivity.
+  * `About the Creator` to navigate to AboutFragment.
 
 ## 🚀 Getting Started 
-  1.Clone the repo:
-    `git clone https://github.com/your-username/nomly-recipe-app.git`
-  2.Open in Android Studio.
-  3.Run the app on an emulator or real device with internet access.
+  1.Clone the repo: 
+   `git clone https://github.com/your-username/nomly-recipe-app.git` 
+  2.Open in Android Studio. 
+  3.Run the app on an emulator or real device with internet access. 
   4.*Enjoy cooking and coding!*
   
 # 👥 Developed By
-This project was developed by a student team from the Faculty of Computers and Data Science, Alexandria University as part of a mobile development course:
+This project was developed by a student team from the Faculty of Computing and Data Science FCDS, Alexandria University as part of a mobile development course @ ITI:
 
 ### 👩‍💻 Eng. Yousef Osama @joee231
 
@@ -50,3 +50,4 @@ This project was developed by a student team from the Faculty of Computers and D
 ### 👨‍💻 Eng. Mariam Leon @Mariamleon
 
 ##### 📧 For collaboration or questions, contact Yasser at: `yasserashraf3142@gmail.com`
+##### And Supervised by Eng. Hager Samir @hagersamir123 
