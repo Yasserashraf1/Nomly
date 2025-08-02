@@ -1,7 +1,7 @@
 
 # 🍽️ Nomly - Recipe App
 
-Nomly is a modern Android recipe app built with Kotlin using the MVVM architecture. It integrates with a remote meal API, allows user authentication (Firebase), and supports saving favorite recipes locally using Room Database.
+Nomly is a modern Android recipe app built with Kotlin using the MVVM architecture. It integrates with a remote meal API, allows user authentication , and supports saving favorite recipes locally using Room Database.
 
 ---
 
@@ -10,7 +10,7 @@ Nomly is a modern Android recipe app built with Kotlin using the MVVM architectu
 - 🔍 Search recipes by name
 - 📝 View detailed recipe information
 - ❤️ Save favorite recipes locally
-- 👥 User authentication (Login/Register with Firebase)
+- 👥 User authentication (Login/Register )
 - 🔄 Auto recipe suggestions via API
 - 🧠 Clean MVVM Architecture
 - 💾 Offline support for saved favorites
@@ -26,7 +26,7 @@ Nomly is a modern Android recipe app built with Kotlin using the MVVM architectu
 | Networking    | Retrofit, Gson                              |
 | Local Storage | Room, SQLite                                |
 | DI (optional) | Hilt/Koin (can be integrated later)         |
-| Authentication| Firebase Auth                               |
+| Authentication|  Auth                                       |
 | UI            | XML, RecyclerView, Navigation Component     |
 
 ---
