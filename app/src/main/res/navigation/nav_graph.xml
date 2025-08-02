@@ -5,7 +5,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment">
 
-    <!-- Auth Flow -->
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.nomly.ui.auth.SplashFragment"
@@ -24,9 +23,7 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
-<!--        <action
-            android:id="@+id/action_loginFragment_to_recipeActivity"
-            app:destination="@id/recipeActivity" />-->
+
     </fragment>
 
     <fragment
@@ -39,7 +36,6 @@
             app:destination="@id/loginFragment" />
     </fragment>
 
-    <!-- Main App Flow -->
     <activity
         android:id="@+id/recipeActivity"
         android:name="com.example.nomly.ui.main.RecipeActivity"

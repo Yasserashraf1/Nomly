@@ -1,8 +1,8 @@
-package com.example.nomly.repository
+package com.example.nomly.data.repository
 
 import androidx.lifecycle.LiveData
-import com.example.nomly.model.FavoriteRecipe
-import com.example.nomly.model.FavoriteRecipeDao
+import com.example.nomly.data.local.db.entities.FavoriteRecipe
+import com.example.nomly.data.local.db.dao.FavoriteRecipeDao
 
 class MealRepository(private val favoriteDao: FavoriteRecipeDao) {
 

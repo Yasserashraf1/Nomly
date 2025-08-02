@@ -1,4 +1,4 @@
-package com.example.nomly.model
+package com.example.nomly.domain.model
 
 data class Recipe(
     val id: String,

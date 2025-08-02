@@ -1,6 +1,5 @@
 package com.example.nomly.ui.auth
 
-import com.example.nomly.ui.main.RecipeActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.nomly.R
 import com.example.nomly.databinding.FragmentRegisterBinding
-import com.example.nomly.model.AppDatabase
-import com.example.nomly.model.User
+import com.example.nomly.data.local.db.AppDatabase
 import androidx.lifecycle.lifecycleScope
-import com.example.nomly.model.UserEntity
+import com.example.nomly.data.local.db.entities.UserEntity
 import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {

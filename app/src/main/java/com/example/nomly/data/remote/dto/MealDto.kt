@@ -1,5 +1,7 @@
-package com.example.nomly.model
-import com.example.nomly.model.FavoriteRecipe
+package com.example.nomly.data.remote.dto
+
+import com.example.nomly.domain.model.Recipe
+
 data class MealDto(
     val idMeal: String,
     val strMeal: String,
@@ -30,9 +32,9 @@ fun MealDto.toRecipe(): Recipe {
         description = strCategory ?: "No description",
         ingredients = ingredients,
         instructions = strInstructions ?: "No instructions",
-        cookingTime = "30 min", // placeholder
+        cookingTime = "30 min",
         imageUrl = strMealThumb ?: "",
         isFavorite = false,
         videoUrl = strYoutube
-        )
+    )
 }

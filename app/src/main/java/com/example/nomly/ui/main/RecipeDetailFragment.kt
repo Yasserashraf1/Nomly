@@ -15,11 +15,11 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.nomly.R
 import com.example.nomly.databinding.FragmentRecipeDetailBinding
-import com.example.nomly.model.AppDatabase
-import com.example.nomly.model.FavoriteRecipe
-import com.example.nomly.repository.MealRepository
-import com.example.nomly.ui.viewmodel.FavoriteViewModel
-import com.example.nomly.ui.viewmodel.RecipeDetailViewModel
+import com.example.nomly.data.local.db.AppDatabase
+import com.example.nomly.data.local.db.entities.FavoriteRecipe
+import com.example.nomly.data.repository.MealRepository
+import com.example.nomly.ui.presentation.viewmodel.FavoriteViewModel
+import com.example.nomly.ui.presentation.viewmodel.RecipeDetailViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
@@ -45,7 +45,6 @@ class RecipeDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Show back arrow in default app bar
         (activity as AppCompatActivity).supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)

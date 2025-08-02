@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.nomly.R
-import com.example.nomly.SharedPrefs
+import com.example.nomly.ui.utils.SharedPrefs
 import com.example.nomly.ui.main.RecipeActivity
 
 class SplashFragment : Fragment() {

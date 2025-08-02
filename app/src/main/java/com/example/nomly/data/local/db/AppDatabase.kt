@@ -1,10 +1,14 @@
-package com.example.nomly.model
+package com.example.nomly.data.local.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.nomly.data.local.db.dao.FavoriteRecipeDao
+import com.example.nomly.data.local.db.dao.UserDao
+import com.example.nomly.data.local.db.entities.FavoriteRecipe
+import com.example.nomly.data.local.db.entities.UserEntity
 
 @Database(entities = [FavoriteRecipe::class, UserEntity::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
