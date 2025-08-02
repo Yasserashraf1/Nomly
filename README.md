@@ -32,14 +32,14 @@
   * `About the Creator` to navigate to AboutFragment.
 
 ## 🚀 Getting Started 
-  1.Clone the repo: 
-   `git clone https://github.com/your-username/nomly-recipe-app.git` 
-  2.Open in Android Studio. 
-  3.Run the app on an emulator or real device with internet access. 
-  4.*Enjoy cooking and coding!*
+  * Clone the repo:
+    `git clone https://github.com/your-username/nomly-recipe-app.git` 
+  * Open in Android Studio. 
+  * Run the app on an emulator or real device with internet access. 
+  * *Enjoy cooking and coding!*
   
 # 👥 Developed By
-This project was developed by a student team from the Faculty of Computing and Data Science FCDS, Alexandria University as part of a mobile development course @ ITI:
+This project was developed by a student team from the Faculty of Computing and Data Science [FCDS](https://share.google/Zqfmvs1b6bnfHeTzL), Alexandria University as part of a mobile development course @ [ITI](https://iti.gov.eg/home):
 
 ### 👩‍💻 Eng. Yousef Osama @joee231
 
