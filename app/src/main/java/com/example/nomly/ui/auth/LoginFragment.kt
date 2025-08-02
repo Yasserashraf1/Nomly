@@ -1,6 +1,8 @@
 package com.example.nomly.ui.auth
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +36,7 @@ class LoginFragment : Fragment() {
         binding.registerText.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
-
+        binding.passwordLayout.setEndIconTintList(ColorStateList.valueOf(Color.BLACK))
         binding.loginButton.setOnClickListener {
             val username = binding.email.text.toString().trim()
             val password =  binding.password.text.toString().trim()

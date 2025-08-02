@@ -1,5 +1,7 @@
 package com.example.nomly.ui.auth
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +31,8 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.passwordLayout.setEndIconTintList(ColorStateList.valueOf(Color.BLACK))
+        binding.confirmPasswordLayout.setEndIconTintList(ColorStateList.valueOf(Color.BLACK))
 
         binding.loginText.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
