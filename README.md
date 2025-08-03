@@ -9,15 +9,7 @@
 * 🔄 Auto recipe suggestions via API
 * 🧠 Clean MVVM Architecture
 * 💾 Offline support for saved favorites
-  🧱 Tech Stack
-Layer	Libraries/Tools
-Language	Kotlin
-Architecture	MVVM (Model-View-ViewModel)
-Networking	Retrofit, Gson
-Local Storage	Room, SQLite
-DI (optional)	Hilt/Koin (can be integrated later)
-Authentication	Auth
-UI	XML, RecyclerView, Navigation Component
+
 ## 🔐 Authentication
   * **Splash screen** with Lottie animation.
   * **Register** and login functionality.
@@ -59,7 +51,7 @@ UI	XML, RecyclerView, Navigation Component
 | UI               | XML, RecyclerView, Navigation Component           |
 
 # 📂 Project Structure
-`
+```
 com.example.nomly/
 │
 ├── data/
@@ -80,7 +72,8 @@ com.example.nomly/
 │
 ├── utils/ (SharedPrefs, Converters)
 └── RecipeApplication.kt
-`
+```
+
 ## 🚀 Getting Started 
   * Clone the repo:
     `git clone https://github.com/your-username/nomly-recipe-app.git` 
