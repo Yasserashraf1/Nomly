@@ -1,18 +1,24 @@
 package com.example.nomly.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.nomly.R
 import com.example.nomly.data.local.db.AppDatabase
 import com.example.nomly.data.repository.MealRepository
+import com.example.nomly.ui.auth.AuthActivity
 import com.example.nomly.ui.presentation.viewmodel.FavoriteViewModel
 import com.example.nomly.ui.presentation.viewmodel.FavoriteViewModelFactory
 import com.example.nomly.ui.utils.LanguageUtil
+import com.example.nomly.ui.utils.SharedPrefs
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class RecipeActivity : AppCompatActivity() {
@@ -74,16 +80,29 @@ class RecipeActivity : AppCompatActivity() {
     // Language switch handling
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+
             R.id.action_language_english -> {
                 LanguageUtil.setLocale(this, "en")
                 recreate()
                 true
             }
-            R.id.action_language_arabic -> {
-                LanguageUtil.setLocale(this, "ar")
-                recreate()
+
+            R.id.aboutCreator -> {
+                val navHostFragment =
+                    supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+                val navController = navHostFragment.navController
+                navController.navigate(R.id.aboutFragment)
                 true
             }
+
+            R.id.signOut -> {
+                SharedPrefs.logout(this)
+                val intent = Intent(this, AuthActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
