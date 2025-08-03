@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -86,7 +85,11 @@ class RecipeActivity : AppCompatActivity() {
                 recreate()
                 true
             }
-
+            R.id.action_language_arabic -> {
+                LanguageUtil.setLocale(this, "ar")
+                recreate()
+                true
+            }
             R.id.aboutCreator -> {
                 val navHostFragment =
                     supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -102,7 +105,6 @@ class RecipeActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }
