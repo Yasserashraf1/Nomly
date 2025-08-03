@@ -48,7 +48,7 @@ class RecipeDetailFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
-            title = "Recipe Details"
+            title = getString(R.string.recipe_details)
         }
         setHasOptionsMenu(true)
 
@@ -58,6 +58,7 @@ class RecipeDetailFragment : Fragment() {
 
         recipeViewModel.recipe.observe(viewLifecycleOwner) { recipe ->
             if (recipe != null) {
+
                 binding.apply {
                     recipeTitle.text = recipe.title
                     Glide.with(this@RecipeDetailFragment)
@@ -106,13 +107,22 @@ class RecipeDetailFragment : Fragment() {
                         saveFavoriteButton.setOnClickListener {
                             if (isFav) {
                                 favoriteViewModel.removeFromFavorites(favoriteRecipe)
-                                Toast.makeText(requireContext(), getString(R.string.removed_from_favorites), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    getString(R.string.removed_from_favorites),
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             } else {
                                 favoriteViewModel.addToFavorites(favoriteRecipe)
-                                Toast.makeText(requireContext(), getString(R.string.added_to_favorites), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    getString(R.string.added_to_favorites),
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     }
+                    watchVideoButton.text = getString(R.string.watch_video)
 
                     watchVideoButton.setOnClickListener {
                         if (!recipe.videoUrl.isNullOrEmpty()) {
@@ -120,16 +130,25 @@ class RecipeDetailFragment : Fragment() {
                             if (videoId != null) {
                                 miniPlayerContainer.visibility = View.VISIBLE
                                 lifecycle.addObserver(miniYoutubePlayerView)
-                                miniYoutubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+                                miniYoutubePlayerView.addYouTubePlayerListener(object :
+                                    AbstractYouTubePlayerListener() {
                                     override fun onReady(youTubePlayer: YouTubePlayer) {
                                         youTubePlayer.loadVideo(videoId, 0f)
                                     }
                                 })
                             } else {
-                                Toast.makeText(requireContext(), "Invalid video URL", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    getString(R.string.invalid_video_url),
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         } else {
-                            Toast.makeText(requireContext(), "No video available", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.no_video_available),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
 
@@ -139,7 +158,11 @@ class RecipeDetailFragment : Fragment() {
                     }
                 }
             } else {
-                Toast.makeText(requireContext(), getString(R.string.recipe_not_found), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.recipe_not_found),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

@@ -27,11 +27,21 @@
     <string name="added_to_favorites">Added to favorites</string>
     <string name="removed_from_favorites">Removed from favorites</string>
     <string name="recipe_not_found">Recipe not found</string>
+    <string name="invalid_video_url">Invalid video URL</string>
+    <string name="no_video_available">No video available</string>
+    <string name="watch_video">watch video</string>
+
 
 
     <!-- About -->
     <string name="about_creator">About the Creator</string>
     <string name="creator_description">Alggesittuus duccnonne to matroions rebidonzio to crysomities nehill on shot hure supportfootior.</string>
+    <string name="about_title">About the App</string>
+    <string name="about_description">
+    Nomly is a recipe app built for food lovers. You can discover a wide variety of recipes from around the world, search by ingredients or name, and save your favorite meals for quick access anytime.\n\nThis app was developed by a passionate team of four developers who love food and clean, user-friendly design. Our goal is to make discovering and enjoying recipes simple, beautiful, and fun for everyone.
+</string>
+    <string name="about_thanks">Thank you for using Nomly ❤️</string>
+
 
     <!-- Menu -->
     <string name="sign_out">Sign Out</string>

@@ -1,0 +1,57 @@
+<resources>
+
+
+    <!-- Auth -->
+    <string name="login">تسجيل الدخول</string>
+    <string name="register">إنشاء حساب</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="dont_have_account">ليس لديك حساب؟ سجل الآن</string>
+    <string name="already_have_account">هل لديك حساب؟ تسجيل الدخول</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+
+    <!-- Main App -->
+    <string name="search_hint">ابحث عن وصفات</string>
+    <string name="favorite_recipes">الوصفات المفضلة</string>
+    <string name="home">الرئيسية</string>
+    <string name="search">بحث</string>
+    <string name="favorites">المفضلة</string>
+    <string name="about">حول</string>
+
+    <!-- Recipe Detail -->
+    <string name="ingredients">المكونات</string>
+    <string name="instructions">الطريقة</string>
+    <string name="save_as_favorite">احفظ كمفضلة</string>
+    <string name="remove_from_favorites">إزالة من المفضلة</string>
+    <string name="show_more">عرض المزيد</string>
+    <string name="show_less">عرض أقل</string>
+    <string name="added_to_favorites">تمت الإضافة إلى المفضلة</string>
+    <string name="removed_from_favorites">تمت الإزالة من المفضلة</string>
+    <string name="recipe_not_found">الوصفة غير موجودة</string>
+    <string name="recipe_details">تفاصيل الوصفة</string>
+    <string name="invalid_video_url">رابط الفيديو غير صالح</string>
+    <string name="no_video_available">لا يوجد فيديو متاح</string>
+    <string name="watch_video">شاهد فيديو </string>
+
+
+    <!-- About -->
+    <string name="about_creator">حول المطور</string>
+    <string name="creator_description">الوصف التجريبي للمطور أو منشئ التطبيق.</string>
+    <string name="about_title">حول التطبيق</string>
+    <string name="about_description">
+    نوملي هو تطبيق وصفات مخصص لعشاق الطعام. يمكنك اكتشاف مجموعة واسعة من الوصفات من جميع أنحاء العالم، والبحث حسب المكونات أو الاسم، وحفظ وجباتك المفضلة للوصول إليها بسرعة في أي وقت.\n\nتم تطوير هذا التطبيق بواسطة فريق مكون من أربعة مطورين يحبون الطعام والتصميم البسيط وسهل الاستخدام. هدفنا هو جعل اكتشاف الوصفات والاستمتاع بها بسيطًا وجميلًا وممتعًا للجميع.
+</string>
+    <string name="about_thanks">شكرًا لاستخدامك نوملي ❤️</string>
+
+
+    <!-- Menu -->
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="about_the_creator">عن المطور</string>
+
+    <!-- Validation -->
+    <string name="error_email_empty">البريد الإلكتروني لا يمكن أن يكون فارغًا</string>
+    <string name="error_email_invalid">يرجى إدخال بريد إلكتروني صحيح</string>
+    <string name="error_password_empty">كلمة المرور لا يمكن أن تكون فارغة</string>
+    <string name="error_password_short">كلمة المرور يجب أن تكون 6 أحرف على الأقل</string>
+    <string name="error_password_mismatch">كلمتا المرور غير متطابقتين</string>
+</resources>

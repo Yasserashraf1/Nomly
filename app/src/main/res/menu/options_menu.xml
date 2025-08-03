@@ -7,4 +7,10 @@
     <item
         android:id="@+id/aboutCreator"
         android:title="@string/about_the_creator" />
+    <item
+        android:id="@+id/action_language_english"
+        android:title="English" />
+    <item
+        android:id="@+id/action_language_arabic"
+        android:title="العربية" />
 </menu>
